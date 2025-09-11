@@ -3,6 +3,7 @@
 - Miranda Solís Jhonatán Raúl
 - Alvarez Carrillo Jose Alberto
 - Soto Franco Diego Rodrigo
+- Fuentes Zamitiz Osvaldo
 
 ## ACERCA DEL REPOSITORIO
 En este repositorio se agregarán todos los trabajos realizados durante el curso de "Sistemas de información", dichos trabajos se organizarán en las carpetas
