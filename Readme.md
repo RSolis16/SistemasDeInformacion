@@ -1,2 +1,5 @@
-Integrantes del equipo:
--Bernal Flores Axel Sadami
+# COLABORADORES DEL GIT
+- Bernal Flores Axel Sadami
+- Miranda Solís Jhonatán Raúl
+
+
