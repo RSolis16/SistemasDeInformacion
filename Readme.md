@@ -4,6 +4,7 @@
 - Fuentes Zamitiz Osvaldo
 - Miranda Solís Jhonatán Raúl
 - Soto Franco Diego Rodrigo
+- Sandoval Fortis Marco Antonio
 
 ## ACERCA DEL REPOSITORIO
 En este repositorio se agregarán todos los trabajos realizados durante el curso de "Sistemas de información", dichos trabajos se organizarán en las carpetas
