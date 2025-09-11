@@ -1,3 +1,6 @@
+Integrantes del equipo:
+-Bernal Flores Axel Sadami
+
 Problematica
 El profesor tiene un documento en excel en donde se le ingresan los datos de un oficio para que genere un hash, el cual se usara para validar la veracidad del documento y evitar falsificaciones o errores, dicho oficio solo lo tiene el en su computadora personal y de escritorio asi que en dado caso que el profesor no se encuentre nadie podria generar las firmas para sus oficios. El profesor nos indico que quiere un sistema que permita generar dichas firmas y que sea accesible para todos.
 
