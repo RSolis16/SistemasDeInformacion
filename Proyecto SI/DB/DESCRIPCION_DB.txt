@@ -28,40 +28,40 @@ PSQL Command: PGPASSWORD=HIkmQupsGyysPzuzaQWeOWYCJCqlL7RD psql -h dpg-d4iimdur43
 
 USUARIO (PARA REALIZAR EL LOGIN)
 
-  COLUMNA	|        TIPO           |                                 PROPÓSITO                                                           |
-                |                       |                                                                                                     |
-id_usuario	| SERIAL PRIMARY KEY	| Identificador único.	No se toca al insertar. Java solo lo usa para buscar la sesión.               |
-                |              		|												      |
-nombre_usuario	| VARCHAR(50) UNIQUE	| Campo para el login.	Es el campo de búsqueda para iniciar sesión.				      |
-                |                       |                                                                                                     |
-password	| TEXT	Contraseña.	| Java debe compararlo directamente para verificar la credencial.                                     |
+COLUMNA	        |        TIPO         |                                 PROPÓSITO                                                           |
+                |                     |                                                                                                     |
+id_usuario      | SERIAL PRIMARY KEY	| Identificador único.	No se toca al insertar. Java solo lo usa para buscar la sesión.               |
+                |                  		|									                                                                        			      |
+nombre_usuario	| VARCHAR(50) UNIQUE	| Campo para el login.	Es el campo de búsqueda para iniciar sesión.				                          |
+                |                     |                                                                                                     |
+password	      | TEXT	[Contraseña].	  | Java debe compararlo directamente para verificar la credencial.                                     |
 
 
 
 
 PERSONAS (REGISTRO)
 
-COLUMNA    	|        TIPO           |                                 PROPÓSITO                                                           |
-                |                       |                                                                                                     |
-id_persona	| SERIAL PRIMARY KEY	| Clave principal. Identificador único para cada persona.                                             |
-                |              		|												      |
-nombre       	| VARCHAR(100)   	| Nombre completo	                                                 			      |
-                |                       |                                                                                                     |
-area    	| VARCHAR(50)   	| Área de trabajo de la persona                                                                       |
+COLUMNA    	   |        TIPO        |                                 PROPÓSITO                                                           |
+               |                    |                                                                                                     |
+id_persona	   | SERIAL PRIMARY KEY	| Clave principal. Identificador único para cada persona.                                             |
+               |              		  |												                                                                              |
+nombre       	 | VARCHAR(100)   	  | Nombre completo	                                                 			                              |
+               |                    |                                                                                                     |
+area    	     | VARCHAR(50)   	    | Área de trabajo de la persona                                                                       |
 
 
 
 
 OFICIO (HASH Y PRINCIPAL)
 
-COLUMNA    	|        TIPO           |                                 PROPÓSITO                                                           |
+COLUMNA    	    |        TIPO           |                                 PROPÓSITO                                                           |
                 |                       |                                                                                                     |
-num_oficio	| VARCHAR(20) PK	| Clave principal. Identificador único para cada persona.                                             |
-                |              		|												      |
-id_persona    	| INTEGER NOT NULL    	| Clave Foránea. Enlaza a la tabla personas.                                   			      |
-                | REFERENCES            | 												      |
+num_oficio	    | VARCHAR(20) PK	      | Clave principal. Identificador único para cada persona.                                             |
+                |              		      |												                                                                              |
+id_persona    	| INTEGER NOT NULL    	| Clave Foránea. Enlaza a la tabla personas.                                   			                  |
+                | REFERENCES            | 												                                                                            |
                 |                       |                                                                                                     |
-hash    	| VARCHAR(64) UNIQUE   	| Al insertar un nuevo oficio, la API debe calcular el hash (SHA-256) de los datos y guardarlo aquí.  |
+hash    	      | VARCHAR(64) UNIQUE   	| Al insertar un nuevo oficio, la API debe calcular el hash (SHA-256) de los datos y guardarlo aquí.  |
 
 
 
