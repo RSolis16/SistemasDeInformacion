@@ -1,0 +1,27 @@
+---------- DATOS DE CONEXION DB ----------
+
+Hostname (Interno): dpg-d4iimdur433s73a1mqog-a
+
+Hostname (Externo): dpg-d4iimdur433s73a1mqog-a.oregon-postgres.render.com
+
+Port: 5432
+
+Database: oficiosdb
+
+Username: admin
+
+Password: HIkmQupsGyysPzuzaQWeOWYCJCqlL7RD
+
+Internal Database URL: postgresql://admin:HIkmQupsGyysPzuzaQWeOWYCJCqlL7RD@dpg-d4iimdur433s73a1mqog-a/oficiosdb
+
+External Database URL: postgresql://admin:HIkmQupsGyysPzuzaQWeOWYCJCqlL7RD@dpg-d4iimdur433s73a1mqog-a.oregon-postgres.render.com/oficiosdb
+
+PSQL Command: PGPASSWORD=HIkmQupsGyysPzuzaQWeOWYCJCqlL7RD psql -h dpg-d4iimdur433s73a1mqog-a.oregon-postgres.render.com -U admin oficiosdb
+
+
+---------- DATOS ADICIONALES ----------
+
+Versión de postgreSQL: 18.1
+
+- Si la conexión falla, revisar que se esté utilizando el hostname correcto, en este caso, se utilizará el externo.
+- Si la conexión sí valida el hostname, pero hay un error, activa o desactiva SSL respectivamente.
