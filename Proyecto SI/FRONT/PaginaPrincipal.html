@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Principal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="navbar-custom">
+        <h2>Sistema de Oficios</h2>
+    </div>
+
+    <div class="container">
+        <h3>Panel de Control</h3>
+        <p>Aquí puedes administrar los oficios registrados.</p>
+
+        <div style="margin-top: 20px; margin-bottom: 20px;">
+            <button class="btn-primary-custom" onclick="consultar()">Consultar</button>
+            <button class="btn-primary-custom" onclick="abrirAgregar()">Agregar</button>
+            <button class="btn-primary-custom" onclick="modificar()">Modificar</button>
+            <button class="btn-primary-custom" onclick="limpiar()">Limpiar</button>
+        </div>
+
+        <div class="card-custom">
+            <h3 style="margin-bottom: 10px;">Lista de Oficios</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Num. Oficio</th>
+                        <th>Persona</th>
+                        <th>Área</th>
+                        <th>Asunto</th>
+                        <th>Fecha</th>
+                        <th>Hash</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaDatos">
+                   
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="modalAgregar" 
+         style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+                background:rgba(0,0,0,0.6); backdrop-filter: blur(3px);
+                justify-content:center; align-items:center;">
+
+        <div style="background:white; width:350px; padding:20px; border-radius:12px;">
+            <h3>Agregar Oficio</h3>
+
+            <label>Persona:</label><br>
+            <input type="text" id="persona" style="width:100%; margin-bottom:10px;"><br>
+
+            <label>Área:</label><br>
+            <input type="text" id="area" style="width:100%; margin-bottom:10px;"><br>
+
+            <label>Asunto:</label><br>
+            <input type="text" id="asunto" style="width:100%; margin-bottom:10px;"><br>
+
+            <label>Fecha:</label><br>
+            <input type="date" id="fecha" style="width:100%; margin-bottom:10px;"><br>
+
+            <br>
+
+            <button class="btn-primary-custom" onclick="guardarOficio()">Guardar</button>
+            <button class="btn-primary-custom" onclick="cerrarAgregar()" style="background:red;">Cerrar</button>
+        </div>
+
+    </div>
+    <script>
+
+        function consultar() {
+            alert("Aquí se hará la consulta a la base de datos");
+        }
+
+        function modificar() {
+            alert("Aquí irá la función de modificar");
+        }
+
+        function limpiar() {
+            alert("Aquí se limpia un oficio sin eliminarlo");
+        }
+
+        function abrirAgregar() {
+            document.getElementById("modalAgregar").style.display = "flex";
+        }
+
+        function cerrarAgregar() {
+            document.getElementById("modalAgregar").style.display = "none";
+        }
+
+        function guardarOficio() {
+
+            const persona = document.getElementById("persona").value;
+            const area = document.getElementById("area").value;
+            const asunto = document.getElementById("asunto").value;
+            const fecha = document.getElementById("fecha").value;
+
+            if (!persona || !area || !asunto || !fecha) {
+                alert("Por favor llena todos los campos");
+                return;
+            }
+
+            cerrarAgregar();
+        }
+    </script>
+
+</body>
+</html>
