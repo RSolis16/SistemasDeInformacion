@@ -1,12 +1,16 @@
 package com.proyecto.controller;
 
-import com.proyecto.model.Usuario;
-import com.proyecto.service.UsuarioService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.proyecto.model.Usuario;
+import com.proyecto.service.UsuarioService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -29,7 +33,7 @@ public class LoginController {
 
         if (usuario != null) {
             session.setAttribute("usuario", usuario);
-            return "redirect:/lista";  // Página principal
+            return "redirect:/oficios";  // 🔥 RUTA CORREGIDA
         }
 
         model.addAttribute("error", "Credenciales incorrectas.");
