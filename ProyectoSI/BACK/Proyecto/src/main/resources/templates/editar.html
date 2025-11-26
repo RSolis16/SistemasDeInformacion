@@ -14,19 +14,15 @@
             <div class="card shadow p-4">
                 <h3 class="text-center mb-4">Editar Oficio</h3>
 
-                <!-- Usamos th:object para bindear campos reales de Oficio -->
-                <form th:action="@{/oficios/actualizar}" th:object="${oficio}" method="post">
+                <!-- Bind del objeto oficio -->
+                <form th:action="@{/lista/actualizar}" th:object="${oficio}" method="post">
 
                     <!-- numOficio (PK) -->
-                    <input type="hidden" th:field="*{numOficio}"/>
+                    <input type="hidden" th:field="*{numOficio}" />
 
-                    <!-- idPersona (campo real en Oficio) -->
-                    <input type="hidden" th:field="*{idPersona}"/>
+                    <!-- idPersona actual (se sobrescribirá en el servicio si cambian el nombre) -->
+                    <input type="hidden" th:field="*{idPersona}" />
 
-                    <!-- Mostrar y permitir editar el nombre de la persona
-                         pero NO usamos th:field porque persona.nombre NO es
-                         propiedad directa de Oficio (evita errores de binding).
-                         Enviamos como personaNombre y lo procesamos en el controlador. -->
                     <div class="mb-3">
                         <label class="form-label">Nombre de la Persona:</label>
                         <input type="text"
@@ -43,13 +39,12 @@
 
                     <div class="mb-3">
                         <label class="form-label">Fecha:</label>
-                        <!-- th:field para LocalDate funciona si el valor está en yyyy-MM-dd -->
                         <input type="date" class="form-control" th:field="*{fecha}" required />
                     </div>
 
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Actualizar Datos</button>
-                        <a th:href="@{/oficios/lista}" class="btn btn-secondary">Cancelar</a>
+                        <a th:href="@{/lista}" class="btn btn-secondary">Cancelar</a>
                     </div>
 
                 </form>

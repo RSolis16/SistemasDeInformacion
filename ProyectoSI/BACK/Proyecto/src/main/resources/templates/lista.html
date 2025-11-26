@@ -20,7 +20,7 @@
     <h3>Panel de Control</h3>
     <p>Aquí puedes administrar los oficios registrados.</p>
 
-    <!-- Botones -->
+    <!-- Botón agregar -->
     <div style="margin-top: 20px; margin-bottom: 20px;">
         <button class="btn-primary-custom" onclick="abrirAgregar()">Agregar Oficio</button>
     </div>
@@ -67,7 +67,6 @@
                     </a>
 
                 </td>
-
             </tr>
             </tbody>
         </table>
@@ -86,6 +85,7 @@
 
         <h3>Agregar Oficio</h3>
 
+        <!-- POST al backend -->
         <form action="/lista/guardar" method="post">
 
             <label>Nombre de la Persona:</label>
@@ -104,7 +104,6 @@
     </div>
 </div>
 
-
 <!-- Scripts -->
 <script>
     function abrirAgregar() {
@@ -118,4 +117,3 @@
 
 </body>
 </html>
-

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.proyecto.model.Oficio;
 import com.proyecto.service.OficioService;
@@ -25,6 +26,16 @@ public class OficioController {
         return "lista";
     }
 
+    @PostMapping("/guardar")
+    public String guardarNuevo(
+            @RequestParam String nombrePersona,
+            @RequestParam String asunto,
+            @RequestParam String fecha
+    ) {
+        servicio.guardarNuevo(nombrePersona, asunto, fecha);
+        return "redirect:/lista";
+    }
+
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable String id, Model model) {
         Oficio oficio = servicio.buscar(id).orElse(null);
@@ -33,8 +44,11 @@ public class OficioController {
     }
 
     @PostMapping("/actualizar")
-    public String actualizar(@ModelAttribute Oficio oficio) {
-        servicio.guardar(oficio);
+    public String actualizar(
+            @ModelAttribute Oficio oficio,
+            @RequestParam String personaNombre
+    ) {
+        servicio.actualizar(oficio, personaNombre);
         return "redirect:/lista";
     }
 
