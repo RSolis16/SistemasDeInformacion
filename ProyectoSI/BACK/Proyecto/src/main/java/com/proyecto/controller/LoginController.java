@@ -29,7 +29,7 @@ public class LoginController {
 
         if (usuario != null) {
             session.setAttribute("usuario", usuario);
-            return "redirect:/";  // Página principal
+            return "redirect:/lista";  // Página principal
         }
 
         model.addAttribute("error", "Credenciales incorrectas.");
@@ -39,6 +39,6 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/lista";
+        return "redirect:/login";
     }
 }
