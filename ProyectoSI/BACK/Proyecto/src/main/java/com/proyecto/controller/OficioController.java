@@ -35,12 +35,12 @@ public class OficioController {
     @PostMapping("/actualizar")
     public String actualizar(@ModelAttribute Oficio oficio) {
         servicio.guardar(oficio);
-        return "redirect:/oficios";
+        return "redirect:/lista";
     }
 
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id) {
         servicio.eliminar(id);
-        return "redirect:/oficios";
+        return "redirect:/lista";
     }
 }

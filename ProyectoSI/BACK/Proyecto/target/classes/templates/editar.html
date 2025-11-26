@@ -10,38 +10,48 @@
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card shadow p-4">
                 <h3 class="text-center mb-4">Editar Oficio</h3>
 
-                <form action="/oficios/actualizar" method="post">
+                <!-- Usamos th:object para bindear campos reales de Oficio -->
+                <form th:action="@{/oficios/actualizar}" th:object="${oficio}" method="post">
 
-                    <input type="hidden" name="numOficio" th:value="${oficio.numOficio}">
+                    <!-- numOficio (PK) -->
+                    <input type="hidden" th:field="*{numOficio}"/>
 
+                    <!-- idPersona (campo real en Oficio) -->
+                    <input type="hidden" th:field="*{idPersona}"/>
+
+                    <!-- Mostrar y permitir editar el nombre de la persona
+                         pero NO usamos th:field porque persona.nombre NO es
+                         propiedad directa de Oficio (evita errores de binding).
+                         Enviamos como personaNombre y lo procesamos en el controlador. -->
                     <div class="mb-3">
-                        <label class="form-label">ID Persona:</label>
-                        <input type="text" class="form-control" name="idPersona" th:value="${oficio.idPersona}" required>
+                        <label class="form-label">Nombre de la Persona:</label>
+                        <input type="text"
+                               class="form-control"
+                               name="personaNombre"
+                               th:value="${oficio.persona != null ? oficio.persona.nombre : ''}"
+                               required />
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Asunto:</label>
-                        <input type="text" class="form-control" name="asunto" th:value="${oficio.asunto}" required>
+                        <input type="text" class="form-control" th:field="*{asunto}" required />
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Fecha:</label>
-                        <input type="date" class="form-control" name="fecha" th:value="${oficio.fecha}" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Hash (Código de seguridad):</label>
-                        <input type="text" class="form-control" name="hash" th:value="${oficio.hash}">
+                        <!-- th:field para LocalDate funciona si el valor está en yyyy-MM-dd -->
+                        <input type="date" class="form-control" th:field="*{fecha}" required />
                     </div>
 
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Actualizar Datos</button>
                         <a th:href="@{/oficios/lista}" class="btn btn-secondary">Cancelar</a>
                     </div>
+
                 </form>
 
             </div>
