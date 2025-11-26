@@ -22,14 +22,14 @@ public class OficioController {
     @GetMapping
     public String listar(Model model) {
         model.addAttribute("listaOficios", servicio.listar());
-        return "lista";
+        return "lista_old";
     }
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable String id, Model model) {
         Oficio oficio = servicio.buscar(id).orElse(null);
         model.addAttribute("oficio", oficio);
-        return "editar";
+        return "editar_old";
     }
 
     @PostMapping("/actualizar")

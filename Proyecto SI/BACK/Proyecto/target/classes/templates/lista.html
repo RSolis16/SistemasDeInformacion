@@ -1,30 +1,65 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Número de Oficio</th>
-            <th>ID Persona</th>
-            <th>Asunto</th>
-            <th>Fecha</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="o : ${listaOficios}">
-            <td th:text="${o.numOficio}"></td>
-            <td th:text="${o.idPersona}"></td>
-            <td th:text="${o.asunto}"></td>
-            <td th:text="${o.fecha}"></td>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Principal</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
 
-            <td>
-                <a th:href="@{'/oficios/editar/' + ${o.numOficio}}"
-                   class="btn btn-warning btn-sm">Editar</a>
+<body>
 
-                <a th:href="@{'/oficios/eliminar/' + ${o.numOficio}}"
-                   onclick="return confirm('¿Seguro que deseas eliminar?')"
-                   class="btn btn-danger btn-sm">
-                   Eliminar
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="navbar-custom">
+    <h2>Sistema de Oficios</h2>
+</div>
+
+<div class="container mt-4">
+    <h3>Panel de Control</h3>
+    <p>Aquí puedes administrar los oficios registrados.</p>
+
+    <div style="margin-top: 20px; margin-bottom: 20px;">
+        <a th:href="@{/oficios/nuevo}" class="btn btn-primary">Agregar Nuevo Oficio</a>
+    </div>
+
+    <div class="card p-4 shadow-sm">
+        <h3 style="margin-bottom: 10px;">Lista de Oficios</h3>
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Num. Oficio</th>
+                <th>ID Persona</th>
+                <th>Asunto</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody id="tablaDatos">
+            <tr th:each="o : ${listaOficios}">
+                <td th:text="${o.numOficio}"></td>
+                <td th:text="${o.idPersona}"></td>
+                <td th:text="${o.asunto}"></td>
+                <td th:text="${o.fecha}"></td>
+
+                <td>
+                    <a th:href="@{'/oficios/editar/' + ${o.numOficio}}"
+                       class="btn btn-warning btn-sm">Editar</a>
+
+                    <a th:href="@{'/oficios/eliminar/' + ${o.numOficio}}"
+                       onclick="return confirm('¿Seguro que deseas eliminar este oficio?')"
+                       class="btn btn-danger btn-sm">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:if="${#lists.isEmpty(listaOficios)}" class="alert alert-info mt-3">
+            No hay oficios registrados actualmente.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
