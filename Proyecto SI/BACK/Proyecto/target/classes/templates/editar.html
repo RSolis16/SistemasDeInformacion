@@ -1,53 +1,17 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Oficio</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/styles.css}">
-</head>
-<body>
+<form action="/oficios/actualizar" method="post">
+    <input type="hidden" name="numOficio" th:value="${oficio.numOficio}">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow p-4">
-                <h3 class="text-center mb-4">Editar Oficio</h3>
+    <label>ID Persona:</label>
+    <input class="form-control" name="idPersona" th:value="${oficio.idPersona}">
 
-                <form action="/oficios/actualizar" method="post">
+    <label>Asunto:</label>
+    <input class="form-control" name="asunto" th:value="${oficio.asunto}">
 
-                    <input type="hidden" name="numOficio" th:value="${oficio.numOficio}">
+    <label>Fecha:</label>
+    <input type="date" class="form-control" name="fecha" th:value="${oficio.fecha}">
 
-                    <div class="mb-3">
-                        <label class="form-label">ID Persona:</label>
-                        <input type="text" class="form-control" name="idPersona" th:value="${oficio.idPersona}" required>
-                    </div>
+    <label>Hash:</label>
+    <input class="form-control" name="hash" th:value="${oficio.hash}">
 
-                    <div class="mb-3">
-                        <label class="form-label">Asunto:</label>
-                        <input type="text" class="form-control" name="asunto" th:value="${oficio.asunto}" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Fecha:</label>
-                        <input type="date" class="form-control" name="fecha" th:value="${oficio.fecha}" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Hash (Código de seguridad):</label>
-                        <input type="text" class="form-control" name="hash" th:value="${oficio.hash}">
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Actualizar Datos</button>
-                        <a th:href="@{/oficios/lista}" class="btn btn-secondary">Cancelar</a>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-</body>
-</html>
+    <button class="btn btn-primary mt-2">Actualizar</button>
+</form>
