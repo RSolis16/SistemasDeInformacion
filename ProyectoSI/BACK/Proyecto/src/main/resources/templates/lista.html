@@ -46,20 +46,22 @@
             <tr th:each="o : ${listaOficios}">
                 <td th:text="${o.numOficio}"></td>
                 <td th:text="${o.idPersona}"></td>
-                <td th:text="${o.persona.nombre}"></td>
+                <td th:text="${o.persona != null ? o.persona.nombre : 'N/A'}"></td>
                 <td th:text="${o.asunto}"></td>
                 <td th:text="${o.fecha}"></td>
                 <td th:text="${o.hash}"></td>
 
                 <td style="display: flex; gap: 10px;">
 
-                    <a th:href="@{'/lista/editar/' + ${o.numOficio}}"
+                    <!-- EDITAR -->
+                    <a th:href="@{'/oficios/editar/' + ${o.numOficio}}"
                        class="btn-primary-custom"
                        style="flex:1; text-align:center;">
                         Editar
                     </a>
 
-                    <a th:href="@{'/lista/eliminar/' + ${o.numOficio}}"
+                    <!-- ELIMINAR -->
+                    <a th:href="@{'/oficios/eliminar/' + ${o.numOficio}}"
                        class="btn-primary-custom"
                        style="background:red; flex:1; text-align:center;"
                        onclick="return confirm('¿Seguro que deseas eliminar?')">
@@ -86,7 +88,10 @@
         <h3>Agregar Oficio</h3>
 
         <!-- POST al backend -->
-        <form action="/lista/guardar" method="post">
+        <form action="/oficios/guardar" method="post">
+
+            <label>Número de Oficio:</label>
+            <input type="text" name="numOficio" style="width:100%; margin-bottom:10px;" required>
 
             <label>Nombre de la Persona:</label>
             <input type="text" name="nombrePersona" style="width:100%; margin-bottom:10px;" required>

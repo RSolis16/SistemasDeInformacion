@@ -1,73 +1,87 @@
 package com.proyecto.service;
 
-import java.time.LocalDate;
-import java.util.Optional;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.proyecto.model.Oficio;
 import com.proyecto.model.Persona;
 import com.proyecto.repository.OficioRepository;
 import com.proyecto.repository.PersonaRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.Optional;
+
 @Service
 public class OficioService {
 
     @Autowired
-    private OficioRepository repo;
+    private OficioRepository oficioRepo;
 
     @Autowired
     private PersonaRepository personaRepo;
 
+    // LISTAR
     public Iterable<Oficio> listar() {
-        return repo.findAll();
+        return oficioRepo.findAll();
     }
 
+    // BUSCAR POR ID
     public Optional<Oficio> buscar(String id) {
-        return repo.findById(id);
+        return oficioRepo.findById(id);
     }
 
-    public void eliminar(String id) {
-        repo.deleteById(id);
-    }
+    // GUARDAR NUEVO
+    public Oficio guardarNuevo(String numOficio, String nombrePersona, String asunto, String fecha) {
 
-    // ============================
-    // AGREGAR NUEVO OFICIO
-    // ============================
-    public void guardarNuevo(String nombrePersona, String asunto, String fecha) {
-
-        Persona persona = personaRepo.findByNombre(nombrePersona)
-                .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
+        // Buscar persona por el NOMBRE
+        Persona p = personaRepo.findByNombre(nombrePersona)
+                .orElseThrow(() -> new RuntimeException("Persona no encontrada: " + nombrePersona));
 
         Oficio oficio = new Oficio();
-        oficio.setNumOficio(UUID.randomUUID().toString());
-        oficio.setIdPersona(persona.getIdPersona());
+        oficio.setNumOficio(numOficio);
+        oficio.setIdPersona(p.getIdPersona());
+        oficio.setAsunto(asunto);
+        oficio.setFecha(LocalDate.parse(fecha));
+        oficio.setHash(generarHash()); // Hash automático
+
+        return oficioRepo.save(oficio);
+    }
+
+    // ACTUALIZAR
+    public Oficio actualizar(String numOficio, String nombrePersona, String asunto, String fecha) {
+
+        Oficio oficio = oficioRepo.findById(numOficio)
+                .orElseThrow(() -> new RuntimeException("Oficio no encontrado: " + numOficio));
+
+        Persona p = personaRepo.findByNombre(nombrePersona)
+                .orElseThrow(() -> new RuntimeException("Persona no encontrada: " + nombrePersona));
+
+        oficio.setIdPersona(p.getIdPersona());
         oficio.setAsunto(asunto);
         oficio.setFecha(LocalDate.parse(fecha));
 
-        // Hash simple
-        oficio.setHash(Integer.toHexString(oficio.hashCode()));
-
-        repo.save(oficio);
+        return oficioRepo.save(oficio);
     }
 
-    // ============================
-    // EDITAR OFICIO EXISTENTE
-    // ============================
-    public void actualizar(Oficio oficio, String personaNombre) {
+    // ELIMINAR
+    public void eliminar(String id) {
+        oficioRepo.deleteById(id);
+    }
 
-        Persona persona = personaRepo.findByNombre(personaNombre)
-                .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
+    // GENERADOR DE HASH (formato letra-numero repetido hasta 64 chars)
+    private String generarHash() {
 
-        // Reasignar persona
-        oficio.setIdPersona(persona.getIdPersona());
+        String letras = "abcdefghijklmnopqrstuvwxyz";
+        String numeros = "0123456789";
+        StringBuilder hash = new StringBuilder();
 
-        // Regenerar hash
-        oficio.setHash(Integer.toHexString(oficio.hashCode()));
+        for (int i = 0; i < 32; i++) { // 32 pares = 64 chars
+            char letra = letras.charAt((int) (Math.random() * letras.length()));
+            char numero = numeros.charAt((int) (Math.random() * numeros.length()));
+            hash.append(letra).append(numero);
+        }
 
-        repo.save(oficio);
+        return hash.toString();
     }
 }
 

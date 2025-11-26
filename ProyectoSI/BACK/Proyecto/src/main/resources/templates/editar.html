@@ -14,20 +14,20 @@
             <div class="card shadow p-4">
                 <h3 class="text-center mb-4">Editar Oficio</h3>
 
-                <!-- Bind del objeto oficio -->
-                <form th:action="@{/lista/actualizar}" th:object="${oficio}" method="post">
+                <!-- FORMULARIO -->
+                <form th:action="@{/oficios/actualizar}" th:object="${oficio}" method="post">
 
                     <!-- numOficio (PK) -->
                     <input type="hidden" th:field="*{numOficio}" />
 
-                    <!-- idPersona actual (se sobrescribirá en el servicio si cambian el nombre) -->
+                    <!-- idPersona NO se usa aquí -->
                     <input type="hidden" th:field="*{idPersona}" />
 
                     <div class="mb-3">
                         <label class="form-label">Nombre de la Persona:</label>
                         <input type="text"
                                class="form-control"
-                               name="personaNombre"
+                               name="nombrePersona"
                                th:value="${oficio.persona != null ? oficio.persona.nombre : ''}"
                                required />
                     </div>
@@ -44,7 +44,7 @@
 
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Actualizar Datos</button>
-                        <a th:href="@{/lista}" class="btn btn-secondary">Cancelar</a>
+                        <a th:href="@{/oficios}" class="btn btn-secondary">Cancelar</a>
                     </div>
 
                 </form>
