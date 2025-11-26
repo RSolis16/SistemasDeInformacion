@@ -11,7 +11,8 @@
     <tbody>
         <tr th:each="o : ${listaOficios}">
             <td th:text="${o.numOficio}"></td>
-            <td th:text="${o.idPersona}"></td>
+            <td th:text="${oficio.personaObj.nombre}"></td>
+            <td th:text="${oficio.personaObj.area}"></td>
             <td th:text="${o.asunto}"></td>
             <td th:text="${o.fecha}"></td>
 

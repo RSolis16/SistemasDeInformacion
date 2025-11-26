@@ -6,6 +6,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "oficios")
@@ -26,6 +28,10 @@ public class Oficio {
 
     @Column(name = "hash")
     private String hash;
+
+    @ManyToOne
+    @JoinColumn(name = "id_persona", insertable = false, updatable = false)
+    private Persona personaObj;
 
     // ====== CONSTRUCTOR VACÍO ======
     public Oficio() {
@@ -52,6 +58,10 @@ public class Oficio {
         return hash;
     }
 
+    public Persona getPersonaObj() {
+        return personaObj;
+    }
+
     // ====== SETTERS ======
     public void setNumOficio(String numOficio) {
         this.numOficio = numOficio;
@@ -72,4 +82,9 @@ public class Oficio {
     public void setHash(String hash) {
         this.hash = hash;
     }
+
+    public void setPersonaObj(Persona personaObj) {
+        this.personaObj = personaObj;
+    }
+
 }
