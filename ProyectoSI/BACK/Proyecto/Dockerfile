@@ -3,19 +3,17 @@ FROM maven:3.9.6-eclipse-temurin-17 AS build
 
 WORKDIR /app
 
-# Copiamos POM y SRC desde la ruta real
-COPY "Proyecto SI/BACK/Proyecto/pom.xml" ./pom.xml
-COPY "Proyecto SI/BACK/Proyecto/src" ./src
+# Como el Dockerfile está junto a pom.xml y src, NO usamos rutas
+COPY pom.xml .
+COPY src ./src
 
-# Construimos sin tests
 RUN mvn -e -X -DskipTests package
 
-# Etapa 2: Runtime con JDK
+# Etapa 2: Runtime
 FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-# Copiamos el JAR generado
 COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
