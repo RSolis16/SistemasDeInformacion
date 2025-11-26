@@ -1,31 +1,113 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Número de Oficio</th>
-            <th>ID Persona</th>
-            <th>Asunto</th>
-            <th>Fecha</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="o : ${listaOficios}">
-            <td th:text="${o.numOficio}"></td>
-            <td th:text="${oficio.personaObj.nombre}"></td>
-            <td th:text="${oficio.personaObj.area}"></td>
-            <td th:text="${o.asunto}"></td>
-            <td th:text="${o.fecha}"></td>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Oficios</title>
 
-            <td>
-                <a th:href="@{'/oficios/editar/' + ${o.numOficio}}"
-                   class="btn btn-warning btn-sm">Editar</a>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
 
-                <a th:href="@{'/oficios/eliminar/' + ${o.numOficio}}"
-                   onclick="return confirm('¿Seguro que deseas eliminar?')"
-                   class="btn btn-danger btn-sm">
-                   Eliminar
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<body>
+
+<!-- Barra superior -->
+<div class="navbar-custom">
+    <h2>Sistema de Oficios</h2>
+</div>
+
+<!-- Contenedor principal -->
+<div class="container">
+
+    <h3>Panel de Control</h3>
+    <p>Aquí puedes administrar los oficios registrados.</p>
+
+    <!-- Botones -->
+    <div style="margin-top: 20px; margin-bottom: 20px;">
+        <button class="btn-primary-custom" onclick="abrirAgregar()">Agregar Oficio</button>
+    </div>
+
+    <!-- LISTA DE OFICIOS -->
+    <div class="card-custom">
+        <h3 style="margin-bottom: 10px;">Lista de Oficios</h3>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Número de Oficio</th>
+                <th>ID Persona</th>
+                <th>Nombre Persona</th>
+                <th>Asunto</th>
+                <th>Fecha</th>
+                <th>Hash</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="o : ${listaOficios}">
+                <td th:text="${o.numOficio}"></td>
+                <td th:text="${o.idPersona}"></td>
+                <td th:text="${o.persona.nombre}"></td>
+                <td th:text="${o.asunto}"></td>
+                <td th:text="${o.fecha}"></td>
+                <td th:text="${o.hash}"></td>
+
+                <td>
+                    <a th:href="@{'/lista/editar/' + ${o.numOficio}}" class="btn-primary-custom">Editar</a>
+                    <a th:href="@{'/lista/eliminar/' + ${o.numOficio}}"
+                       class="btn-primary-custom" style="background:red;"
+                       onclick="return confirm('¿Seguro que deseas eliminar?')">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<!-- MODAL: AGREGAR OFICIO -->
+<!-- MODAL: AGREGAR OFICIO -->
+<div id="modalAgregar"
+     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+                background:rgba(0,0,0,0.6); backdrop-filter: blur(3px);
+                justify-content:center; align-items:center;">
+
+    <div style="background:white; width:350px; padding:20px; border-radius:12px; color:black;">
+
+        <h3>Agregar Oficio</h3>
+
+        <form action="/lista/guardar" method="post">
+
+            <label>Nombre de la Persona:</label>
+            <input type="text" name="nombrePersona" style="width:100%; margin-bottom:10px;" required>
+
+            <label>Asunto:</label>
+            <input type="text" name="asunto" style="width:100%; margin-bottom:10px;" required>
+
+            <label>Fecha:</label>
+            <input type="date" name="fecha" style="width:100%; margin-bottom:20px;" required>
+
+            <button class="btn-primary-custom" type="submit">Guardar</button>
+            <button class="btn-primary-custom" onclick="cerrarAgregar()" type="button" style="background:red;">Cerrar</button>
+
+        </form>
+    </div>
+</div>
+
+
+<!-- Scripts -->
+<script>
+    function abrirAgregar() {
+        document.getElementById("modalAgregar").style.display = "flex";
+    }
+
+    function cerrarAgregar() {
+        document.getElementById("modalAgregar").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
+

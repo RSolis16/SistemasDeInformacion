@@ -2,12 +2,7 @@ package com.proyecto.model;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "oficios")
@@ -18,7 +13,7 @@ public class Oficio {
     private String numOficio;
 
     @Column(name = "id_persona")
-    private Integer idPersona;
+    private Long idPersona;
 
     @Column(name = "asunto")
     private String asunto;
@@ -31,7 +26,7 @@ public class Oficio {
 
     @ManyToOne
     @JoinColumn(name = "id_persona", insertable = false, updatable = false)
-    private Persona personaObj;
+    private Persona persona;
 
     // ====== CONSTRUCTOR VACÍO ======
     public Oficio() {
@@ -42,9 +37,7 @@ public class Oficio {
         return numOficio;
     }
 
-    public Integer getIdPersona() {
-        return idPersona;
-    }
+    public Long getIdPersona() { return idPersona;}
 
     public String getAsunto() {
         return asunto;
@@ -58,18 +51,14 @@ public class Oficio {
         return hash;
     }
 
-    public Persona getPersonaObj() {
-        return personaObj;
-    }
+    public Persona getPersona() {return persona;}
 
     // ====== SETTERS ======
     public void setNumOficio(String numOficio) {
         this.numOficio = numOficio;
     }
 
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
-    }
+    public void setIdPersona(Long idPersona) { this.idPersona = idPersona;}
 
     public void setAsunto(String asunto) {
         this.asunto = asunto;
@@ -82,9 +71,4 @@ public class Oficio {
     public void setHash(String hash) {
         this.hash = hash;
     }
-
-    public void setPersonaObj(Persona personaObj) {
-        this.personaObj = personaObj;
-    }
-
 }

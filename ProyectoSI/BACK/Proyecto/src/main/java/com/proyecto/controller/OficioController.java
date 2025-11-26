@@ -13,7 +13,7 @@ import com.proyecto.model.Oficio;
 import com.proyecto.service.OficioService;
 
 @Controller
-@RequestMapping("/oficios")
+@RequestMapping("/lista")
 public class OficioController {
 
     @Autowired

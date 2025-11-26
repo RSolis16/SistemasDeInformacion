@@ -7,18 +7,18 @@ import jakarta.persistence.*;
 public class Persona {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_persona")
-    private Integer idPersona;
+    private Long idPersona;
 
     private String nombre;
     private String area;
 
-    public Integer getIdPersona() {
+    // Getters y Setters
+    public Long getIdPersona() {
         return idPersona;
     }
 
-    public void setIdPersona(Integer idPersona) {
+    public void setIdPersona(Long idPersona) {
         this.idPersona = idPersona;
     }
 
