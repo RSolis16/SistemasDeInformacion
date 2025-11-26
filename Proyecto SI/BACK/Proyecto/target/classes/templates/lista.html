@@ -1,0 +1,30 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Número de Oficio</th>
+            <th>ID Persona</th>
+            <th>Asunto</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="o : ${listaOficios}">
+            <td th:text="${o.numOficio}"></td>
+            <td th:text="${o.idPersona}"></td>
+            <td th:text="${o.asunto}"></td>
+            <td th:text="${o.fecha}"></td>
+
+            <td>
+                <a th:href="@{'/oficios/editar/' + ${o.numOficio}}"
+                   class="btn btn-warning btn-sm">Editar</a>
+
+                <a th:href="@{'/oficios/eliminar/' + ${o.numOficio}}"
+                   onclick="return confirm('¿Seguro que deseas eliminar?')"
+                   class="btn btn-danger btn-sm">
+                   Eliminar
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,6 @@
+com\proyecto\ProyectoApplication.class
+com\proyecto\model\Oficio.class
+com\proyecto\controller\HomeController.class
+com\proyecto\service\OficioService.class
+com\proyecto\repository\OficioRepository.class
+com\proyecto\controller\OficioController.class

@@ -1,0 +1,17 @@
+<form action="/oficios/actualizar" method="post">
+    <input type="hidden" name="numOficio" th:value="${oficio.numOficio}">
+
+    <label>ID Persona:</label>
+    <input class="form-control" name="idPersona" th:value="${oficio.idPersona}">
+
+    <label>Asunto:</label>
+    <input class="form-control" name="asunto" th:value="${oficio.asunto}">
+
+    <label>Fecha:</label>
+    <input type="date" class="form-control" name="fecha" th:value="${oficio.fecha}">
+
+    <label>Hash:</label>
+    <input class="form-control" name="hash" th:value="${oficio.hash}">
+
+    <button class="btn btn-primary mt-2">Actualizar</button>
+</form>
