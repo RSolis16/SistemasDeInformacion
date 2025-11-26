@@ -198,7 +198,7 @@ ALTER TABLE public.oficios OWNER TO admin;
 CREATE TABLE public.personas (
     id_persona integer NOT NULL,
     nombre character varying(100) NOT NULL,
-    area character varying(50) NOT NULL
+    departamento character varying(50) NOT NULL
 );
 
 
@@ -325,7 +325,7 @@ OF-2025-025	20	Documentación sobre capacitación de sistemas.	2025-09-25	y1x2w3
 -- Data for Name: personas; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY public.personas (id_persona, nombre, area) FROM stdin;
+COPY public.personas (id_persona, nombre, departamento) FROM stdin;
 1	Ana Gabriela Rojas	Recursos Humanos
 2	Roberto Cárdenas Soto	Médico Legal
 3	Elías Vidal Ríos	Infraestructura y Sistemas
@@ -482,4 +482,3 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES TO admin;
 --
 -- PostgreSQL database cluster dump complete
 --
-
